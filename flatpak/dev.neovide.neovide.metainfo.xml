@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>dev.neovide.neovide</id>
+  <name>neovide</name>
+  <summary>No Nonsense Neovim Client in Rust</summary>
+  <metadata_license>MIT</metadata_license>
+  <project_license>MIT</project_license>
+  <developer id="dev.neovide">
+    <name>Kaylee Simmons</name>
+  </developer>
+  <description>
+    <p>This is a simple, no-nonsense, cross-platform graphical user interface for Neovim (an aggressively refactored and updated Vim editor). Where possible there are some graphical improvements, but functionally it should act like the terminal UI.</p>
+  </description>
+  <launchable type="desktop-id">dev.neovide.neovide.desktop</launchable>
+  <icon type="remote">https://raw.githubusercontent.com/neovide/neovide/030fe7de627fb3b604412c67f9911f264073c8ae/assets/neovide.svg</icon>
+  <branding>
+    <color scheme_preference="light" type="primary">#79b242</color>
+    <color scheme_preference="dark" type="primary">#79b242</color>
+  </branding>
+  <content_rating type="oars-1.1"></content_rating>
+  <url type="bugtracker">https://github.com/neovide/neovide/issues</url>
+  <url type="homepage">https://neovide.dev/index.html</url>
+  <url type="contact">https://discord.gg/SjFpZdQys6</url>
+  <url type="faq">https://neovide.dev/faq.html</url>
+  <url type="vcs-browser">https://github.com/neovide/neovide</url>
+  <releases>
+    <release date="2024-03-03" version="0.12.3">
+      <url type="details">https://github.com/neovide/neovide/releases/tag/0.12.3</url>
+    </release>
+  </releases>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://neovide.dev/assets/BasicScreenCap.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://neovide.dev/assets/AnimatedCursor.gif</image>
+    </screenshot>
+    <screenshot>
+      <image>https://neovide.dev/assets/SmoothScrolling.gif</image>
+    </screenshot>
+  </screenshots>
+</component>

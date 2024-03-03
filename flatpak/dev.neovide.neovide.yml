@@ -1,0 +1,46 @@
+id: dev.neovide.neovide
+runtime: org.freedesktop.Platform
+runtime-version: "23.08"
+sdk: org.freedesktop.Sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.rust-stable
+command: neovide
+finish-args:
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --device=dri # opengl
+  - --share=network
+  - --share=ipc
+  - --filesystem=host
+  - --filesystem=xdg-config/neovide
+  - --talk-name=org.freedesktop.Flatpak
+modules:
+  - name: neovide
+    sources:
+      # - type: archive
+      #   url: https://github.com/neovide/neovide/archive/refs/tags/0.12.2.tar.gz
+      #   sha256: 5425c60454388651fd79757bde7c4d7499cdc49b375f7697b48d8366d45d08e4
+      - neovide-git.json
+      - generated-sources.json
+      - type: file
+        path: dev.neovide.neovide.metainfo.xml
+    buildsystem: simple
+    build-options:
+      append-path: /usr/lib/sdk/rust-stable/bin
+      env:
+        CARGO_HOME: /run/build/neovide/cargo
+    build-commands:
+      - cargo --offline fetch --manifest-path Cargo.toml --verbose
+      - cargo --offline build --release --verbose
+      - install -Dm755 target/release/neovide -t /app/bin/
+
+      - sed -i 's/Icon=neovide/Icon=dev.neovide.neovide/g' assets/neovide.desktop
+
+      - install -Dm644 assets/neovide-16x16.png /app/share/icons/hicolor/16x16/apps/${FLATPAK_ID}.png
+      - install -Dm644 assets/neovide-32x32.png /app/share/icons/hicolor/32x32/apps/${FLATPAK_ID}.png
+      - install -Dm644 assets/neovide-48x48.png /app/share/icons/hicolor/48x48/apps/${FLATPAK_ID}.png
+      - install -Dm644 assets/neovide-256x256.png /app/share/icons/hicolor/256x256/apps/${FLATPAK_ID}.png
+      - install -Dm644 assets/neovide.svg /app/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
+      - install -Dm644 assets/neovide.desktop /app/share/applications/${FLATPAK_ID}.desktop
+
+      - install -Dm644 dev.neovide.neovide.metainfo.xml /app/share/metainfo/${FLATPAK_ID}.metainfo.xml
